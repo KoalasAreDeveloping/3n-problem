@@ -37,12 +37,41 @@ class ThreeNCalc {
         };
 };
 
+class processInput: public ThreeNCalc {
+    public:
+        void process() {
+            cout << "Enter 'range' to test a range, 'number' to test a single number or 'quit' to quit: " << endl;
+            string input;
+            cin >> input;
+            if (input == "range") {
+                cout << "Enter the starting number: " << endl;
+                int start;
+                cin >> start;
+                cout << "Enter the ending number: " << endl;
+                int end;
+                cin >> end;
+                for (int i = start; i <= end; i++) {
+                    cout << "======================================" << endl << "Testing: " << i << endl;
+                    run(i);
+                    cout << "======================================" << endl;
+                }
+            } else if (input == "number") {
+                cout << "Enter the number: " << endl;
+                int num;
+                cin >> num;
+                run(num);
+            } else if (input == "quit") {
+                cout << "Goodbye!" << endl;
+            } else {
+                cout << "Invalid input" << endl;
+                process();
+            }
+        };
+};
+
 int main() {
-    ThreeNCalc calc;
-    int n;
-    cout << "Enter a number: ";
-    cin >> n;
-    calc.run(n);
+    processInput p;
+    p.process();   
 }
 
 
